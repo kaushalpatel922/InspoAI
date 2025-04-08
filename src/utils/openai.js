@@ -20,5 +20,11 @@ export async function fetchAIResponse(prompt, type) {
     });
   
     const data = await response.json();
+    
+    if (data.choices && data.choices.length > 0) {
+      return data.choices[0].message.content.trim();
+    } else {
+      return "⚠️ No response from AI. Please try again.";
+    }
   }
   
