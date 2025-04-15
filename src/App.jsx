@@ -7,11 +7,19 @@ function App() {
   const [prompt, setPrompt] = useState("");
   const [output, setOutput] = useState("");
   const [type, setType] = useState("blog");
+  const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
-    setOutput("Generating...");
+    if (!prompt.trim()) {
+      alert("Please enter a prompt!");
+      return;
+    }
+
+    setLoading(true);
+    setOutput("⏳ Generating...");
     const aiResponse = await fetchAIResponse(prompt, type);
     setOutput(aiResponse);
+    setLoading(false);
   };
   return (
     <>
