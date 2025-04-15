@@ -31,3 +31,4 @@ try {
   console.error("Error fetching AI response:", error);
   return "❌ Error generating response. Check your API key and network.";
 }
+}
