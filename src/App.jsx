@@ -28,9 +28,30 @@ function App() {
         </select>
       </div>
       <div>
-        <button onClick={handleGenerate}>Generate</button>
-        {output}
+        <label>💡 Your Prompt</label>
+        <textarea
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Enter your idea or topic here..."
+          rows="4"
+          className=""
+        ></textarea>
       </div>
+      <button
+        className={`w-full bg-blue-600 text-white ${
+          loading ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+        onClick={handleGenerate}
+        disabled={loading}
+      >
+        {loading ? "Generating..." : "✨ Generate"}
+      </button>
+      {output && (
+        <div className="mt-6 p-4 bg-white border border-gray-200 rounded shadow-sm">
+          <h2 className="font-semibold mb-2">🔎 Output:</h2>
+          <pre className="whitespace-pre-wrap">{output}</pre>
+        </div>
+      )}
     </>
   );
 }
